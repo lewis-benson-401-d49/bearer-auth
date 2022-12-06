@@ -6,6 +6,7 @@
 
 ### Problem Domain
 
+Fix all the bugs found in the code.
 Create an API that uses Auth Basic to create a user, and allow a user to login on /signup and /signin
 add Bearer token for a path /users that requires a token to view
 
