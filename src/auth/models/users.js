@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const userSchema = (sequelize, DataTypes) => {
   const model = sequelize.define('User', {
     username: { type: DataTypes.STRING, allowNull: false, unique: true },
-    password: { type: DataTypes.STRING, allowNull: false, },
+    password: { type: DataTypes.STRING, allowNull: false },
     token: {
       type: DataTypes.VIRTUAL,
       get() {
@@ -26,7 +26,7 @@ const userSchema = (sequelize, DataTypes) => {
     const valid = await bcrypt.compare(password, user.password);
     if (valid) { return user; }
     throw new Error('Invalid User');
-  }
+  };
 
   // Bearer AUTH: Validating a token
   model.authenticateToken = async function (token) {
@@ -38,9 +38,9 @@ const userSchema = (sequelize, DataTypes) => {
     } catch (e) {
       throw new Error(e.message);
     }
-  }
+  };
 
   return model;
-}
+};
 
 module.exports = userSchema;
