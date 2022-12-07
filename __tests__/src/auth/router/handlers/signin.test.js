@@ -16,6 +16,7 @@ afterAll(async () => {
 describe('Testing the signin handler', () => {
 
   const res = {
+    cookie: jest.fn(() => res),
     send: jest.fn(() => res),
     status: jest.fn(() => res),
     json: jest.fn(() => res),
