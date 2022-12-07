@@ -16,7 +16,7 @@ async function handleSignup(req, res, next) {
   }
 }
 
-async function handleSignin(req, res, next) {
+function handleSignin(req, res, next) {
   try {
     const user = {
       user: req.user,
