@@ -1,6 +1,6 @@
 # LAB - 401-D49 Lab-07
 
-## Project: auth-server
+## Project: Bearer-auth
 
 ### Author: Lewis Benson
 
@@ -12,8 +12,8 @@ add Bearer token for a path /users that requires a token to view
 
 ### Links and Resources
 
-- [ci/cd](https://github.com/tm-LBenson/auth-server/actions) (GitHub Actions)
-- [server-prod](https://d49-auth-server.onrender.com/)
+- [ci/cd](https://github.com/tm-LBenson/bearer-auth/actions) (GitHub Actions)
+- [server-prod](https://d49-bearer-auth.onrender.com/)
 
 ### Setup
 
