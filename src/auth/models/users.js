@@ -10,14 +10,16 @@ const userSchema = (sequelize, DataTypes) => {
     token: {
       type: DataTypes.VIRTUAL,
       get() {
-        return jwt.sign({ username: this.username });
+        return jwt.sign({ username: this.username }, process.env.SECRET, { expiresIn: 1000 * 60 * 60 * 24 * 7 });
       },
     },
   });
 
   model.beforeCreate(async (user) => {
-    let hashedPass = bcrypt.hash(user.password, 10);
-    user.password = hashedPass;
+    let hashedPass = await bcrypt.hash(user.password, 10);
+    user.dataValues.password = hashedPass;
+
+
   });
 
   // Basic AUTH: Validating strings (username, password) 
