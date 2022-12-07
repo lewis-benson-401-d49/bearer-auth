@@ -2,28 +2,21 @@
 
 const base64 = require('base-64');
 const { users } = require('../models/index.js');
-const bcrypt = require('bcrypt');
 
 module.exports = async (req, res, next) => {
-  let { authorization } = req.headers;
-  if (!authorization) {
-    res.status(401).send('Not Authorized!');
-  } else {
 
-    let authString = authorization.split(' ').pop();
-    let decodedAuthString = base64.decode(authString);
-    let [username, password] = decodedAuthString.split(':');
-    let user = await users.findOne({ where: { username } });
-    if (user) {
-      let validUser = await bcrypt.compare(password, user.password);
-      if (validUser) {
-        req.user = user;
-        next();
+  if (!req.headers.authorization) { return _authError(); }
+  let basic = req.headers.authorization.split(' ');
 
-      } else {
-        next('Not Authorized!');
-      }
-    }
+  let [username, pass] = base64.decode(basic[1]).split(':');
+
+  try {
+    req.user = await users.authenticateBasic(username, pass);
+    next();
+  } catch (e) {
+    console.error(e.message);
+    res.status(403).send('Invalid Login');
   }
+
 };
 
