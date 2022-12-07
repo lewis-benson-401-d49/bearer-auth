@@ -34,6 +34,10 @@ see `.env.sample`
 - `/signin` : POST - login as user
 - `/signup` : POST - create one user
 - `/users` : GET - Read all usernames if user has Bearer token
+- `/secret` : GET - View data if user has Bearer token
+
+Task 2: Secure the JWT Tokens
+Implement any 2 of these security measures, or any other measure that you can think of or have researched. Use a configuration option for these (i.e. an env setting) so that your system can handle multiple authorization schemes and easily turn them off/on
 
 #### Tests
 
